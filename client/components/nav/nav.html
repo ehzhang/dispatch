@@ -13,24 +13,10 @@
         {{/if}}
 
         <div class="right menu">
-          {{> navMentor }}
           {{> navAccount }}
         </div>
       </div>
     </div>
-  {{/if}}
-</template>
-
-<template name="navMentor">
-  {{#if userIs 'mentor'}}
-    <a class="icon item" href="/mentor">
-      <i class="ui world icon"></i>
-      {{#if openTickets}}
-        <div class="ui tiny floating notification red label">
-          {{ openTickets }}
-        </div>
-      {{/if}}
-    </a>
   {{/if}}
 </template>
 

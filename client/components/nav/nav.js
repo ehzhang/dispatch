@@ -1,17 +1,4 @@
 // -----------------------------
-// Mentor section of Nav
-// -----------------------------
-Template.navMentor.helpers({
-  openTickets: function(){
-    return Tickets.find({
-      status: {
-        $in: ["OPEN", "CLAIMED"]
-      }
-    }).fetch().length;
-  }
-});
-
-// -----------------------------
 // Account section of Nav
 // -----------------------------
 Template.navAccount.rendered = function(){
