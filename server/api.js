@@ -1,15 +1,20 @@
 var base = '/api/';
 
 var api = [
-{
-  endpoint: 'restful',
-  get: function(){
-    this.response.end('get request\n');
-  },
-  post: function(){
-    this.response.end('post request\n');
+  {
+    endpoint: 'twilio',
+    post: function() {
+      // TODO verify that this message is actually coming from Twilio!
+      var body = this.request.body; // already JSON
+      var twilio = Meteor.npmRequire('twilio');
+      console.log('body: ' + JSON.stringify(this.request.body));
+      var resp = new twilio.TwimlResponse();
+      resp.message(new Date().toString());
+      console.log(resp.toString());
+      this.response.writeHead(200, { 'Content-Type': 'text/xml' });
+      this.response.end(resp.toString());
+    }
   }
-}
 ];
 
 // Build the API
