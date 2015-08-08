@@ -1,0 +1,85 @@
+//------------------------------
+// BRANDING COLOR VARIABLES
+//
+// primary: primary brand color
+// secondary: secondary brand color
+// success: generally some sort of green that fits with your color palette
+// danger: generally some sort of red to indicate danger
+//------------------------------
+
+// Primary color of your brand
+$brand-primary: #137DC3;
+
+// Secondary color of your brand
+$brand-secondary: #FFBF0A;
+
+// Success Buttons
+$brand-success: rgb(46, 204, 113);
+
+// Danger/Negative Buttons
+$brand-danger: #FF490A;
+
+// Black
+$black: #2d2d2d;
+
+// --------------
+// Colors used for social auth
+// --------------
+
+// Facebook Color
+$facebook-blue: #3b5998;
+
+// ===============================================================================
+
+//------------------------------
+// FONT MIXINS
+//
+// Change the default fonts.
+// font-stack: base fonts
+// logo-font: font for the logo
+//------------------------------
+
+// Styling for the fonts
+@mixin font-stack(){
+  font-family: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: 300;
+}
+
+@mixin logo-font(){
+  font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: 700;
+}
+
+// ===============================================================================
+
+//------------------------------
+// IMAGE BRANDING
+//
+// Set branding here by changing up the color of text and the background images
+// or background color.
+//------------------------------
+#splash {
+  color: white;
+  background: $brand-primary;
+
+  // Comment these two lines if you want a single image to cover the entire page.
+  //  background: url(/assets/images/background.jpg) no-repeat center center;
+  //  background-size: cover;
+//  background: $brand-primary;
+  background: url(/assets/images/geometry2.png) repeat;
+}
+
+
+// Banner which appears under the nav, and on each page.
+#banner {
+  color: white;
+  //  background: url(/assets/images/background.jpg) no-repeat center center;
+  //  background-size: cover;
+  //  background: $brand-primary;
+  background: url(/assets/images/geometry2.png) repeat;
+}
+
+// Footer, which appears on each page.
+footer {
+  color: darken(white, 25%);
+}

@@ -1,0 +1,14 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "hunter2"
+  },
+  "facebook": {
+    "enable": true,
+    "clientId": "facebook-client-id",
+    "secret": "facebook-secret"
+  },
+  "settings": {
+  },
+  "defaultAdmin": true
+}
