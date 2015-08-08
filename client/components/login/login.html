@@ -16,18 +16,16 @@
         <input type="password" id='password' placeholder="Password">
       </div>
       <div class="field">
-        <button id="login-password" class="fluid primary push button"> Login </button>
+        <button id="login-password" class="ui fluid grey button"> Login </button>
       </div>
     </div>
     <br>
 
-    {{#if enabled.github}}
-    <button id="login-github" class="fluid github push button"> Login with Github </button>
-    <br>
-    {{/if}}
-
     {{#if enabled.facebook}}
-    <button id="login-facebook" class="fluid facebook push button"> Login with Facebook</button>
+      <button id="login-facebook" class="ui fluid facebook button">
+        <i class="facebook icon"></i>
+        Login with Facebook
+      </button>
     {{/if}}
   </div>
 </template>
