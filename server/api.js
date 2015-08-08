@@ -14,8 +14,11 @@ var api = [
 
 // Build the API
 api.forEach(function(endpoint){
-  Router
-    .route(base + endpoint.endpoint, {where: 'server'})
-    .get(endpoint.get)
-    .post(endpoint.post);
+  var route = Router.route(base + endpoint.endpoint, {where: 'server'});
+  if (endpoint.get) {
+    route.get(endpoint.get);
+  }
+  if (endpoint.post) {
+    route.post(endpoint.post);
+  }
 });
