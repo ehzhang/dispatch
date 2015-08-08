@@ -104,6 +104,7 @@ parser.fallback(function(res) {
  * Twilio controller
  */
 
+// GLOBAL
 handleTwilio = function() {
   // TODO verify that this message is actually coming from Twilio before doing
   // any processing!

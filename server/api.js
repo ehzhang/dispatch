@@ -3,7 +3,10 @@ var base = '/api/';
 var api = [
   {
     endpoint: 'twilio',
-    post: handleTwilio
+    post: handleTwilio,
+    get: function() {
+      this.response.end('GET not supported');
+    }
   }
 ];
 
