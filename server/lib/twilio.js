@@ -86,14 +86,28 @@ var Parser = (function() {
 
 var parser = new Parser();
 
-parser.respond(/^(\d{4})\b/, function(res) {
-  console.log('bare number: ' + res.match[1]);
-});
+// wrapper to make sure that a user is registered and validated
+var validating = function(wrapped) {
+  var validator = function(res) {
+    var user = res.context.from;
+    if (false) {
+      // TODO check if user is not registered or not approved
+      var msg = "Sorry, you are not registered or not approved by your team administrator.";
+      sendResponse(res.context.response, res.context.from, msg);
+    }
+    wrapped(res);
+  };
+  return validator;
+};
 
-parser.respond(/switch\s+(\d{4})\b/, function(res) {
+parser.respond(/^(\d{4})\b/, validating(function(res) {
+  console.log('bare number: ' + res.match[1]);
+}));
+
+parser.respond(/switch\s+(\d{4})\b/, validating(function(res) {
   console.log('switch with num: ' + res.match[1]);
   sendResponse(res.context.response, res.context.from, 'hello ' + res.match[1]);
-});
+}));
 
 parser.fallback(function(res) {
   var msg = "Sorry, I couldn't understand that command.";
