@@ -41,7 +41,7 @@ SyncedCron.add({
       if (users.length > 0) {
         candidates = Meteor.users.find({_id: {$in: users}, online: true}).fetch();
       } else {
-        candidates = Meteor.users.find({'profile.channels': {$in: channels}}).fetch();
+        candidates = Meteor.users.find({'profile.channels': {$in: channels}, online: true}).fetch();
       }
       for (var j = 0; j < candidates.length; j++) {
         var candidate = candidates[j];
