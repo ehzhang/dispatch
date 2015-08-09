@@ -19,8 +19,10 @@ Meteor.startup(function(){
     if (options.profile){
       user.profile = options.profile;
 
+      user.roles = {};
+
       if (config.defaultAdmin){
-        user.admin = true;
+        user.roles.admin = true;
       }
     }
 
@@ -49,7 +51,7 @@ function createAdmin(username, password){
   },{
     $set:
       {
-        'admin': true
+        'roles.admin': true
       }
   });
 }

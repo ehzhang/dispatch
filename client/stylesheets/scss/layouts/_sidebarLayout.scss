@@ -1,9 +1,10 @@
-#container.bannerLayout {
+#container.sidebarLayout {
   min-height: 100%;
+  margin-left: $sidebar-width;
   position: relative;
 
   #content {
-    padding: 12px 12px 60px 12px;
+    padding: 12px;
   }
 
   #footer {

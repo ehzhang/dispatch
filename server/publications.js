@@ -12,7 +12,8 @@ function getUserData(){
         {
           fields: {
             'services': 1,
-            'profile': 1
+            'profile': 1,
+            'roles': 1
           }
         });
   } else {

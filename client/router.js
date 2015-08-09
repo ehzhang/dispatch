@@ -7,7 +7,7 @@ Router.onBeforeAction(function() {
 });
 
 Router.route('/', function(){
-  this.layout('bannerLayout');
+  this.layout('sidebarLayout');
   this.render('home');
 });
 

@@ -4,9 +4,9 @@ window.authorized = {
     return Meteor.userId() ? true : false;
   },
   admin: function(){
-    return Meteor.user() && Meteor.user().admin;
+    return Meteor.user() && Meteor.user().roles.admin;
   },
   mentor: function(){
-    return Meteor.user() && Meteor.user().mentor;
+    return Meteor.user() && Meteor.user().roles.mentor;
   }
 };

@@ -1,4 +1,6 @@
-// var APP_NAME = window.CONSTANTS.APP_NAME;
+var APP_NAME = window.CONSTANTS.APP_NAME;
+
+setDocumentTitle(APP_NAME);
 
 // // Title Notification
 // var intervalId;
@@ -41,9 +43,9 @@
 //   }
 // });
 
-// function setDocumentTitle(text){
-//   document.title = text;
-// }
+function setDocumentTitle(text){
+  document.title = text;
+}
 
 
 // // Desktop Notifications

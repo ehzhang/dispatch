@@ -1,0 +1,13 @@
+<template name="sidebarLayout">
+  <div id="container" class="sidebarLayout">
+    {{> sidebarNav }}
+
+    <div id="content">
+    {{> yield }}
+    </div>
+
+    <div id="footer">
+      {{> footer }}
+    </div>
+  </div>
+</template>

@@ -2,9 +2,12 @@
 @import 'keyframes';
 @import 'mixins';
 
+$sidebar-width: 84px;
+
 // Individual Elements
 
 // Components
+@import 'components/sidebarNav';
 
 // Views
 @import 'views/splash';
@@ -26,7 +29,7 @@ html {
 }
 
 // Layout
-@import 'layouts/bannerLayout';
+@import 'layouts/sidebarLayout';
 
 // Any overrides
 @import 'override';
