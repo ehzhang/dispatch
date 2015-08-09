@@ -32,7 +32,11 @@ Template.channels.helpers({
   },
   'isSubscribed': function(){
     var channelId = this._id;
-    return Meteor.user().profile.channels.indexOf(channelId) > -1;
+    if (Meteor.user().profile.channls){
+      return Meteor.user().profile.channels.indexOf(channelId) > -1;
+    }
+
+    return false;
   }
 });
 
@@ -46,10 +50,18 @@ Template.channels.events({
     var color = t.colors[Math.floor(Math.random() * t.colors.length)];
     Meteor.call('createChannel', Meteor.userId(), name, color, function(){
 
+      $('#name').val("");
+
+      sweetAlert("Woo!", "Your channel has been created.", "success");
+
     });
   },
   'click .subscribe': function(e, t){
     var channelId = this._id;
     Meteor.call('subscribe', Meteor.userId(), channelId);
+  },
+  'click .unsubscribe': function(e, t){
+    var channelId = this._id;
+    Meteor.call('unsubscribe', Meteor.userId(), channelId);
   }
 });

@@ -1,8 +1,6 @@
 #create {
   height: 125%;
 
-  margin-bottom: 200px;
-
   > .segment {
 
     padding: 24px;
@@ -101,5 +99,15 @@
         cursor: pointer;
       }
     }
+  }
+
+  #task {
+    .label {
+      color: white;
+    }
+    .summary {
+      font-size: 1.5em;
+    }
+    margin-bottom: 300px;
   }
 }

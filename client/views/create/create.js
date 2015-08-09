@@ -11,12 +11,12 @@ Template.create.onCreated(function(){
 
   this.taskStates = [
     {
-      name: 'number',
-      confirmText: 'Continue',
-    },
-    {
       name: 'people',
       confirmText: 'Done Selecting'
+    },
+    {
+      name: 'number',
+      confirmText: 'Continue',
     },
     {
       name: 'task',
@@ -25,9 +25,15 @@ Template.create.onCreated(function(){
   ];
   this.step = new ReactiveVar(0);
 
-  this.selected = new ReactiveVar('');
+  this.selected = new ReactiveVar('channel');
 
   this.filterChannel = new ReactiveVar('');
+});
+
+Template.create.onRendered(function(){
+  $('html, body').animate({
+    scrollTop: 0
+  }, 600);
 });
 
 Template.create.helpers({
@@ -60,19 +66,25 @@ Template.create.helpers({
     return Channels.find({}, {sort: {name: 1}});
   },
   'selectedChannels': function(){
-    var selectedChannels = Template.instance().taskSelectedChannels;
+    var selectedChannels = Template.instance().taskSelectedChannels.get();
     return Object
       .keys(selectedChannels)
-      .map(function(key){
+      .filter(function(key){
         return selectedChannels[key];
+      })
+      .map(function(key){
+        return Channels.findOne({_id: key});
       });
   },
   'selectedUsers': function(){
-    var selectedUsers = Template.instance().taskSelectedUsers;
+    var selectedUsers = Template.instance().taskSelectedUsers.get();
     return Object
       .keys(selectedUsers)
-      .map(function(key){
+      .filter(function(key){
         return selectedUsers[key];
+      })
+      .map(function(key){
+        return Meteor.users.findOne({_id: key});
       });
   },
   'channelUsers': function(){
@@ -125,6 +137,10 @@ Template.create.events({
     }
 
     var step = t.taskStates[nextStep];
+
+    $('html, body').animate({
+      scrollTop: $('#' + step.name).offset().top - 16
+    }, 600);
 
     $('#' + step.name).transition('scale in');
 

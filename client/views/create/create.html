@@ -7,36 +7,9 @@
       </button>
     </div>
 
-    <section id="number" class="ui segment">
-
-      <div class="count">
-        <div class="question">
-          How many people?
-        </div>
-
-        <div class="main">
-
-          <button id="dec" class="circular basic ui icon button">
-            <i class="red icon minus"></i>
-          </button>
-
-          <span class="ui input">
-            <input id="num-people" type="tel" value="1">
-          </span>
-
-          <button id="inc" class="circular basic ui icon button">
-            <i class="green icon plus"></i>
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
     <section
       id="people"
-      class="ui segment hidden">
+      class="ui segment">
 
       <div class="question">
         Who do you need?
@@ -53,7 +26,7 @@
       {{#if selected 'anyone'}}
         <div class="channel">
           <div id="anyone" class="ui segment">
-            Anyone can work on this task
+            Anyone available!
             <div class="ui circular label">
               {{totalUsers}}
             </div>
@@ -165,6 +138,33 @@
 
     </section>
 
+    <section id="number" class="ui segment hidden">
+
+      <div class="count">
+        <div class="question">
+          How many people?
+        </div>
+
+        <div class="main">
+
+          <button id="dec" class="circular basic ui icon button">
+            <i class="red icon minus"></i>
+          </button>
+
+          <span class="ui input">
+            <input id="num-people" type="tel" value="1">
+          </span>
+
+          <button id="inc" class="circular basic ui icon button">
+            <i class="green icon plus"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
     <section
       id="task"
       class="ui segment hidden">
@@ -173,46 +173,71 @@
         What do you need?
       </div>
 
-      <div class="ui page grid">
-        <div class="four wide column"></div>
-        <div class="eight wide column">
-          <div class="ui segment">
+      <div class="ui page stackable grid">
+        <div class="one wide column"></div>
+        <div class="fourteen wide column">
+          <div class="ui huge icon fluid input">
+            <input
+              class="large"
+              placeholder="Rescue Jimmy, pick up Bananas from CostCo, etc."
+              type="text">
+          </div>
 
-            <div class="summary">
-              {{#if selected 'channel'}}
-                You requested
+          <div class="ui divider"></div>
+
+          <div class="summary">
+
+            {{#if selected 'channel'}}
+              You're requesting
+              <strong>
+                {{taskPeople}}
+              </strong>
+
+              from
+
+              {{#each selectedChannels}}
+                <div
+                  style="background: {{color}}"
+                  class="ui large label">
+                  #{{name}}
+                </div>
+              {{/each}}
+
+            {{/if}}
+
+            {{#if selected 'anyone'}}
+
+              You're requesting
                 <strong>
                   {{taskPeople}}
                 </strong>
 
-                from
+              from
+                <strong>
+                anyone available!
+                </strong>
 
-                {{#each selectedChannels}}
-                  <div
-                    style="background: {{color}}"
-                    class="ui label">
-                    {{name}}
-                  </div>
-                {{/each}}
+            {{/if}}
 
-              {{/if}}
+            {{#if selected 'people'}}
 
-              {{#if selected 'anyone'}}
+              You're requesting
+                <strong>
+                  {{taskPeople}}
+                </strong>
 
-              {{/if}}
+              from
 
-              {{#if selected ''}}
+              {{#each selectedUsers}}
+                <strong>{{profile.name}}</strong>
+              {{/each}}
 
-              {{/if}}
-            </div>
-
-            <div class="ui form">
-              <input type="text">
-            </div>
-
+            {{/if}}
           </div>
+
+
         </div>
-        <div class="four wide column"></div>
+        <div class="one wide column"></div>
       </div>
 
     </section>
