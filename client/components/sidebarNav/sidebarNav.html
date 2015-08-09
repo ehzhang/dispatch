@@ -1,22 +1,20 @@
 <template name="sidebarNav">
-  {{#if currentUser }}
-    <div id="sidebar" class="visible ui left vertical inverted sidebar labeled icon menu">
-      <a class="item {{isActivePath '/'}}">
-        <i class="home icon"></i>
-        Home
-      </a>
-      <a class="item">
-        <i class="block layout icon"></i>
-        Topics
-      </a>
-      <a class="item">
-        <i class="settings icon"></i>
-        Settings
-      </a>
-      <a class="item" id="logout">
-        <i class="sign out icon"></i>
-        Logout
-      </a>
-    </div>
-  {{/if}}
+  <div id="sidebar" class="visible ui left vertical inverted sidebar labeled icon menu">
+    <a class="item {{isActivePath '/'}}">
+      <i class="send icon"></i>
+      Dispatch
+    </a>
+    <a class="item">
+      <i class="plus layout icon"></i>
+      New Task
+    </a>
+    <a class="item">
+      <i class="settings icon"></i>
+      Settings
+    </a>
+    <a class="item" id="logout">
+      <i class="sign out icon"></i>
+      Logout
+    </a>
+  </div>
 </template>

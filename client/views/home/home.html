@@ -1,7 +1,18 @@
 <template name="home">
   <section id="home">
+
     <div class="ui segment">
       You're logged in!
     </div>
+
+    <div class="ui stackable grid">
+      <div class="ten wide column">
+        {{> taskFeed }}
+      </div>
+      <div class="six wide column">
+        {{> eventFeed }}
+      </div>
+    </div>
+
   </section>
 </template>
