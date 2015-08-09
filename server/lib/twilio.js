@@ -1,5 +1,5 @@
 var twilio = Meteor.npmRequire('twilio');
-var settings = JSON.parse(Assets.getText('config.json')).settings;
+var settings = JSON.parse(Assets.getText('config.json'));
 var twilioClient = twilio(settings.twilio.accountSid, settings.twilio.authToken);
 var phone = Meteor.npmRequire('node-phonenumber');
 

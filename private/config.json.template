@@ -8,12 +8,12 @@
     "appId": "facebook-client-id",
     "secret": "facebook-secret"
   },
+  "twilio": {
+    "number": "from-phone-number",
+    "accountSid": "account-sid",
+    "authToken": "auth-token"
+  },
   "settings": {
-    "twilio": {
-      "number": "from-phone-number",
-      "accountSid": "account-sid",
-      "authToken": "auth-token"
-    }
   },
   "defaultAdmin": true
 }
