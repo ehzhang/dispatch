@@ -120,12 +120,12 @@ parser.respond(/^\s*ok\s*$/i, function(res) {
   }
 });
 
-parser.respond(/^\s*start\s*$/i, validating(function(res) {
+parser.respond(/^\s*enable\s*$/i, validating(function(res) {
   Meteor.call('setStatusP', res.context.from, true);
   ackResponse(res.context.response);
 }));
 
-parser.respond(/^\s*stop\s*$/i, validating(function(res) {
+parser.respond(/^\s*disable\s*$/i, validating(function(res) {
   Meteor.call('setStatusP', res.context.from, false);
   ackResponse(res.context.response);
 }));
