@@ -72,7 +72,7 @@ simply.on('longClick', function(e) {
              fetchData();
            });
     }
-  } else if (e.button === 'up') {
+  } else if (e.button === 'up' || e.button === 'down') {
     if (cache && cache.current) {
       ajax({method: 'post',
            url: statusUrl, type: 'json', data: {call: 'close'}}, function(data) {
