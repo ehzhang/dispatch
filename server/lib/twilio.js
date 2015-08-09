@@ -27,6 +27,11 @@ var sendResponse = function(response, to, message) {
   response.end(resp.toString());
 };
 
+var ackResponse = function(response) {
+  response.writeHead(200, { 'Content-Type': 'text/xml' });
+  response.end('');
+};
+
 var sendMessage = function(to, message) {
   twilioClient.sendMessage({
     to: to,
@@ -102,7 +107,7 @@ var parser = new Parser();
 var validating = function(wrapped) {
   var validator = function(res) {
     var user = res.context.from;
-    if (false) {
+    if (!Meteor.call('isApproved', user)) {
       // TODO check if user is not registered or not approved
       var msg = "Sorry, you are not registered or not approved by your team administrator.";
       sendResponse(res.context.response, res.context.from, msg);
@@ -113,8 +118,17 @@ var validating = function(wrapped) {
 };
 
 parser.respond(/^\s*ok\s*$/i, function(res) {
-  // TODO
-  // note that this is not wrapped in validating
+  var ret = Meteor.call('verify', res.context.from);
+  var msg;
+  if (ret === true) {
+    msg = "Thank you for verifying your phone number.";
+    sendResponse(res.context.response, res.context.from, msg);
+  } else if (ret === null) {
+    msg = "We couldn't find you in our database.";
+    sendResponse(res.context.response, res.context.from, msg);
+  } else {
+    ackResponse(res.context.response);
+  }
 });
 
 parser.respond(/^\s*start\s*$/i, validating(function(res) {

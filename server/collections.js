@@ -40,7 +40,7 @@ Schemas.Task = new SimpleSchema({
 
   workers: {
     type: [String],
-    label: 'WOrks on Task'
+    label: 'Works on Task'
   },
 
   status: {
@@ -104,7 +104,9 @@ Channels.attachSchema(Schemas.Channel);
  *      channels: [String]
  *    },
  *    roles: {
- *      admin: Boolean
+ *      admin: Boolean,
+ *      verified: Boolean, // phone number verified
+ *      approved: Boolean, // approved by admin
  *    }
  * }
  */
