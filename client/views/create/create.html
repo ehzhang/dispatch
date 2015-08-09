@@ -1,3 +1,222 @@
 <template name="create">
-  Creation view!
+  <div id="create">
+
+    <div>
+      <button id="next-step" class="ui teal massive button">
+        {{confirmText}}
+      </button>
+    </div>
+
+    <section id="number" class="ui segment">
+
+      <div class="count">
+        <div class="question">
+          How many people?
+        </div>
+
+        <div class="main">
+
+          <button id="dec" class="circular basic ui icon button">
+            <i class="red icon minus"></i>
+          </button>
+
+          <span class="ui input">
+            <input id="num-people" type="tel" value="1">
+          </span>
+
+          <button id="inc" class="circular basic ui icon button">
+            <i class="green icon plus"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section
+      id="people"
+      class="ui segment hidden">
+
+      <div class="question">
+        Who do you need?
+      </div>
+
+      <div class="ui two item menu">
+        <a id="select-anyone" class="item {{selected 'anyone'}}">Anyone</a>
+        <a id="select-channel" class="item {{selected 'channel'}}">Channels</a>
+        <a id="select-people" class="item {{selected 'people'}}">Specific People</a>
+      </div>
+
+      <br>
+
+      {{#if selected 'anyone'}}
+        <div class="channel">
+          <div id="anyone" class="ui segment">
+            Anyone can work on this task
+            <div class="ui circular label">
+              {{totalUsers}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
+      {{#if selected 'channel'}}
+        <div id="choose-channel" class="ui two column stackable grid">
+          {{#each allChannels}}
+            <div class="channel column">
+
+              {{#if isSelectedChannel }}
+                <div
+                  style="background-color: {{color}}"
+                  class="ui inverted segment">
+
+                  <span>
+                    #{{name}}
+                  </span>
+
+                  <div class="ui circular label">
+                    {{channelUsers.length}}
+                  </div>
+
+                </div>
+              {{else}}
+                <div
+                  style="border-color: {{color}}"
+                  class="ui segment">
+
+                  <span>
+                    #{{name}}
+                  </span>
+
+                  <div class="ui circular label">
+                    {{channelUsers.length}}
+                  </div>
+
+                </div>
+              {{/if}}
+
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      {{#if selected 'people'}}
+        <div id="choose-people" class="ui grid">
+          <div class="four wide channel column">
+            {{#each allChannels}}
+
+              {{#if isFilterChannel }}
+                <div
+                  style="background-color: {{color}}"
+                  class="ui inverted segment">
+
+                  <span>
+                    #{{name}}
+                  </span>
+
+                  <div class="ui circular label">
+                    {{channelUsers.length}}
+                  </div>
+
+                </div>
+              {{else}}
+                <div
+                  style="border-color: {{color}}"
+                  class="ui segment">
+
+                  <span>
+                    #{{name}}
+                  </span>
+
+                  <div class="ui circular label">
+                    {{channelUsers.length}}
+                  </div>
+
+                </div>
+              {{/if}}
+
+            {{/each}}
+          </div>
+          <div class="twelve wide column">
+            <div class="ui fluid search icon input">
+              <i class="search icon"></i>
+              <input type="text" id="searchUsers">
+            </div>
+            <br>
+            <div class="ui people grid">
+              {{#each channelUsers}}
+                <div class="eight wide column">
+                  {{#if isSelectedUser}}
+                    <div class="choose-person selected">
+                      {{> userCard}}
+                    </div>
+                  {{else}}
+                    <div class="choose-person">
+                      {{> userCard}}
+                    </div>
+                  {{/if}}
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
+    </section>
+
+    <section
+      id="task"
+      class="ui segment hidden">
+
+      <div class="question">
+        What do you need?
+      </div>
+
+      <div class="ui page grid">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+          <div class="ui segment">
+
+            <div class="summary">
+              {{#if selected 'channel'}}
+                You requested
+                <strong>
+                  {{taskPeople}}
+                </strong>
+
+                from
+
+                {{#each selectedChannels}}
+                  <div
+                    style="background: {{color}}"
+                    class="ui label">
+                    {{name}}
+                  </div>
+                {{/each}}
+
+              {{/if}}
+
+              {{#if selected 'anyone'}}
+
+              {{/if}}
+
+              {{#if selected ''}}
+
+              {{/if}}
+            </div>
+
+            <div class="ui form">
+              <input type="text">
+            </div>
+
+          </div>
+        </div>
+        <div class="four wide column"></div>
+      </div>
+
+    </section>
+
+
+  </div>
 </template>

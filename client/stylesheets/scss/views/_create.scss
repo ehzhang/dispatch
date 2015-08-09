@@ -1,0 +1,105 @@
+#create {
+  height: 125%;
+
+  margin-bottom: 200px;
+
+  > .segment {
+
+    padding: 24px;
+
+    .question {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 36px;
+      padding: 12px;
+
+    }
+
+    &.hidden {
+      visibility: hidden;
+      &.animated {
+        visibility: visible;
+      }
+    }
+
+  }
+
+  #next-step {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 99;
+  }
+
+  #number.segment {
+
+    text-align: center;
+
+    .count {
+      text-align: center;
+
+      > div {
+        padding: 12px 0;
+      }
+
+      .description {
+        font-size: 2em;
+      }
+
+      .main {
+        input {
+          text-align: center;
+          font-size: 2em;
+          width: 4em;
+          margin: 0 16px;
+        }
+        .icon {
+          font-size: 24px;
+        }
+        .input, button {
+          vertical-align: middle;
+        }
+      }
+
+    }
+
+  }
+
+  #people.segment {
+    .channel {
+
+      .segment {
+        font-size: 1.5em;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .label {
+          float: right;
+        }
+      }
+    }
+
+    .channel.column {
+      max-height: 500px;
+      overflow: auto;
+    }
+
+    .people.grid {
+      max-height: 500px;
+      overflow: auto;
+    }
+
+    .choose-person {
+      border: 1.5px solid transparent;
+      border-radius: 0.28571429rem;
+      &.selected {
+        border: 1.5px solid $brand-primary;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

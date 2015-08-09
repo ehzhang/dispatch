@@ -2,23 +2,25 @@
 @import 'keyframes';
 @import 'mixins';
 
-$sidebar-width: 86px;
+$sidebar-width: 92px;
 
 // Individual Elements
 
 // Components
 @import 'components/sidebarNav';
+@import 'components/userCard';
 
 // Views
 @import 'views/splash';
 @import 'views/home';
+@import 'views/create';
 
 body,
 html,
 button,
 input {
   @include font-stack();
-  color: #303030;
+  color: #4A4A4A;
 }
 
 body,
