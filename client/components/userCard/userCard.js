@@ -11,7 +11,7 @@ Template.userCard.helpers({
   'statusClass': function(){
     var userId = this._id;
 
-    if (this.profile.online){
+    if (!this.profile.online){
       return 'red'; // Unavailable
     }
 
