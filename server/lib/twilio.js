@@ -137,7 +137,7 @@ parser.respond(/^\s*current\s*$/i, validating(function(res) {
                  "Assigned to: " + ret);
   } else {
     sendResponse(res.context.response, res.context.from,
-                 "You're not assigned to any tasks.")
+                 "You're not assigned to any tasks.");
   }
 }));
 
@@ -149,7 +149,7 @@ parser.respond(/^\s*(\d{4})\s*$/, validating(function(res) {
                  "You're already doing another task.");
   } else if (ret === false) {
     sendResponse(res.context.response, res.context.from,
-                 "Task is full.")
+                 "Task is full.");
   } else {
     sendResponse(res.context.response, res.context.from,
                  "Assigned to " + taskId + ": " + ret);
@@ -166,7 +166,7 @@ parser.respond(/^\s*switch\s*(\d{4})\s*$/i, validating(function(res) {
                  "Internal error... try again?");
   } else if (ret === false) {
     sendResponse(res.context.response, res.context.from,
-                 "Task is full.")
+                 "Task is full.");
   } else {
     sendResponse(res.context.response, res.context.from,
                  "Assigned to " + taskId + ": " + ret);
@@ -205,6 +205,12 @@ parser.respond(/^\s*close\s*task\s*$/i, validating(function(res) {
     sendResponse(res.context.response, res.context.from,
                  "No current task or already closed.");
   }
+}));
+
+parser.respond(/\s*pebble\s*/i, validating(function(res) {
+  var user = Meteor.call('getUser', res.context.from);
+  var api =  "http://dispatch.hackmit.org/api/pebble/" + user._id;
+  sendResponse(res.context.response, res.context.from, api);
 }));
 
 parser.fallback(function(res) {
