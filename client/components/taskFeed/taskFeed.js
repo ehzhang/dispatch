@@ -51,6 +51,9 @@ Template.openTask.events({
   },
   'click .unjoin.button': function(){
     Meteor.call('stopTask', Meteor.userId());
+  },
+  'click .close.button': function(){
+    Meteor.call('closeTask', Meteor.userId(), this.code);
   }
 });
 

@@ -15,3 +15,13 @@ UI.registerHelper('constant', function(variable){
 UI.registerHelper('userIs', function(role){
   return authorized[role]();
 });
+
+UI.registerHelper('facebookImageUrl', function(user){
+  if (user && user.services && user.services.facebook){
+    return 'https://graph.facebook.com/' +
+      user.services.facebook.id +
+      '/picture?type=large';
+  } else {
+    return '/assets/images/stardust.png';
+  }
+});

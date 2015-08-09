@@ -1,5 +1,42 @@
 <template name="eventFeed">
-  <div class="ui segment">
-    LIVE EVENTS
+  <div class="ui header">
+    Live Feed
+  </div>
+  <div class="ui feed">
+    {{#each events}}
+      {{> eventFeedEvent}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="eventFeedEvent">
+  <div class="event">
+    {{#if eventUser}}
+      <div class="label">
+        <img
+          src="{{facebookImageUrl eventUser}}">
+        </div>
+    {{else}}
+      <div class="label">
+        <i class="ui yellow lightning icon"></i>
+      </div>
+    {{/if}}
+    <div class="content">
+      <div class="summary">
+        <a class="user">
+          {{#if eventUser}}
+            {{eventUser.profile.name}}
+          {{else}}
+            A Robot
+          {{/if}}
+        </a> {{type}} a task.
+        <div class="date">
+          {{timeAgo}}
+        </div>
+      </div>
+      <div class="extra text">
+        {{eventTask.description}}
+      </div>
+    </div>
   </div>
 </template>
