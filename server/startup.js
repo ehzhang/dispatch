@@ -25,8 +25,6 @@ Meteor.startup(function(){
       user.roles.approved = false;
 
       if (config.defaultAdmin){
-        user.roles.approved = true;
-        user.roles.verified = true;
         user.roles.admin = true;
       }
     }
