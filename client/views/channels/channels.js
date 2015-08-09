@@ -32,7 +32,7 @@ Template.channels.helpers({
   },
   'isSubscribed': function(){
     var channelId = this._id;
-    if (Meteor.user().profile.channls){
+    if (Meteor.user().profile.channels){
       return Meteor.user().profile.channels.indexOf(channelId) > -1;
     }
 
