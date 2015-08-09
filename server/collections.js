@@ -31,7 +31,8 @@ Schemas.Task = new SimpleSchema({
 
   createdBy: {
     type: String,
-    label: 'Creator Id'
+    label: 'Creator Id',
+    optional: true
   },
 
   closedBy: {

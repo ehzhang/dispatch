@@ -7,6 +7,11 @@ var api = [
     get: function() {
       this.response.end('GET not supported');
     }
+  },
+  {
+    endpoint: 'hackbot',
+    post: handleHackbotPost,
+    get: handleHackbotGet
   }
 ];
 
