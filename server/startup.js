@@ -13,7 +13,7 @@ Meteor.startup(function(){
   addFacebookIntegration(config.facebook);
 
   // Add Base Settings
-  setBasicSettings(config);
+  // setBasicSettings(config);
 
   Accounts.onCreateUser(function(options, user){
     if (options.profile){
@@ -69,12 +69,12 @@ function addFacebookIntegration(fb){
   }
 }
 
-function setBasicSettings(config){
-  // Check if the settings document already exists
-  var settings = Settings.find({}).fetch();
-  if (settings.length === 0 || settings.length > 1){
-    // Remove all documents and then create the singular settings document.
-    Settings.remove({});
-    Settings.insert(config.settings);
-  }
-}
+// function setBasicSettings(config){
+//   // Check if the settings document already exists
+//   var settings = Settings.find({}).fetch();
+//   if (settings.length === 0 || settings.length > 1){
+//     // Remove all documents and then create the singular settings document.
+//     Settings.remove({});
+//     Settings.insert(config.settings);
+//   }
+// }
