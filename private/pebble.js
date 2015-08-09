@@ -6,7 +6,7 @@ var index = null;
 function redraw() {
   if (cache === null || index === null) {
     simply.text({ title: 'Loading', subtitle: '', body: '' });
-  } else if (cache.tasks && index >= cache.length) {
+  } else if (cache.tasks && index >= cache.tasks.length) {
     simply.text({ title: 'No Tasks', subtitle: '', body: '' });
   } else {
     if (cache.tasks) {
