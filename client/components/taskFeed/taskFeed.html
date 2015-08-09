@@ -29,11 +29,25 @@
     </div>
     <div class="ui middle attached segment">
       {{#if taskWorkers}}
-        {{#each taskWorkers}}
-          {{> taskFeedFacebookUserAvatar}}
-        {{/each}}
+        <p>
+          {{#each taskWorkers}}
+            {{> taskFeedFacebookUserAvatar}}
+          {{/each}}
+        </p>
+        <p>
+        {{#if usersNeeded}}
+          Still looking for {{usersNeeded}} more!
+        {{else}}
+          We're all set here 😎
+        {{/if}}
+        </p>
       {{else}}
-        <strong>Nobody on this task yet </strong> 😞
+        <p>
+          <strong>Nobody on this task yet </strong> 😞
+        <p>
+        </p>
+          We're looking for {{max}} people.
+        </p>
       {{/if}}
 
     </div>
@@ -44,9 +58,11 @@
         </div>
       {{else}}
         {{#if notAlreadyTasked}}
-          <div class="ui join basic green button">
-            Join Task
-          </div>
+          {{#if usersNeeded}}
+            <div class="ui join basic green button">
+              Join Task
+            </div>
+          {{/if}}
         {{/if}}
       {{/if}}
       <div class="ui join basic red button">

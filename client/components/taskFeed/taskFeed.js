@@ -38,6 +38,9 @@ Template.openTask.helpers({
     return this.channels.map(function(id){
       return Channels.findOne({_id: id});
     });
+  },
+  'usersNeeded': function(){
+    return this.max - this.workers.length;
   }
 });
 
@@ -53,7 +56,7 @@ Template.openTask.events({
 
 Template.taskFeedFacebookUserAvatar.helpers({
   'facebookImageUrl': function(){
-    if (this.services.facebook){
+    if (this.services && this.services.facebook){
       return 'https://graph.facebook.com/' +
         this.services.facebook.id +
         '/picture?type=large';
