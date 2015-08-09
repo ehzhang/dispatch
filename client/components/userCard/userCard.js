@@ -1,7 +1,3 @@
-Template.userCard.events({
-
-});
-
 Template.userCard.helpers({
   'facebookImageUrl': function(){
     if (this.services.facebook){
@@ -12,8 +8,25 @@ Template.userCard.helpers({
       return '/assets/images/stardust.png';
     }
   },
-  'statusIs': function(state){
-    return  true;
+  'statusClass': function(){
+    var userId = Meteor.userId();
+
+    if (!Meteor.user().profile.online){
+      return 'red'; // Unavailable
+    }
+
+    var task = Tasks.findOne({
+      workers: {
+        $in: [userId]
+      }
+    });
+
+    if (task){
+      return 'yellow'; // Busy
+    }
+
+    return 'green';
+
   },
   'channels': function(){
     if (this.profile.channels){
@@ -21,7 +34,6 @@ Template.userCard.helpers({
         return Channels.findOne({_id: channelId});
       });
     }
-
     return [];
-  }
+  },
 });

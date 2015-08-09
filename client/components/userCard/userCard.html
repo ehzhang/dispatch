@@ -6,9 +6,7 @@
         src="{{facebookImageUrl}}">
       <span>
         <strong>{{profile.name}}</strong>
-          {{#if statusIs 'online'}}
-            <i class="green circle icon"></i>
-          {{/if}}
+        <i class="{{statusClass}} circle icon"></i>
       </span>
     </div>
     <div class="ui bottom attached segment">
