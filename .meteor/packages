@@ -22,3 +22,5 @@ aldeed:collection2
 meteorhacks:npm
 npm-container
 zimme:active-route
+autopublish
+insecure

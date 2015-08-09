@@ -35,3 +35,7 @@ function getAllUsers(){
         });
   }
 }
+
+function getOpenTasks(){
+
+}

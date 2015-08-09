@@ -10,10 +10,10 @@ authorized = {
   },
   admin: function(id){
     var user = _getUser(id);
-    return user.admin;
+    return user.roles.admin;
   },
   mentor: function(id){
     var user = _getUser(id);
-    return user.admin || user.mentor;
+    return user.roles.admin || user.mentor;
   }
 };
