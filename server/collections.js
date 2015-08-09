@@ -8,14 +8,14 @@ var Schemas = {};
 Tasks = new Mongo.Collection('tasks');
 
 Schemas.Task = new SimpleSchema({
-  title: {
-    type: String,
-    label: 'Title'
-  },
-
   description: {
     type: String,
     label: 'Description'
+  },
+
+  code: {
+    type: String, // 4 digit number, TODO validate this
+    label: 'Code'
   },
 
   created: {
@@ -25,7 +25,8 @@ Schemas.Task = new SimpleSchema({
 
   closed: {
     type: Date,
-    label: 'Time Closed'
+    label: 'Time Closed',
+    optional: true
   },
 
   createdBy: {
@@ -35,7 +36,18 @@ Schemas.Task = new SimpleSchema({
 
   closedBy: {
     type: String,
-    label: 'Closer Id'
+    label: 'Closer Id',
+    optional: true
+  },
+
+  min: {
+    type: Number,
+    label: 'Minimum number of workers',
+  },
+
+  max: {
+    type: Number,
+    label: 'Maximum number of workers',
   },
 
   workers: {

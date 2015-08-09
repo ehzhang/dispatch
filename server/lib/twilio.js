@@ -141,22 +141,61 @@ parser.respond(/^\s*stop\s*$/i, validating(function(res) {
   ackResponse(res.context.response);
 }));
 
+parser.respond(/^\s*current\s*$/i, validating(function(res) {
+  var ret = Meteor.call('currentP', res.context.from);
+  if (ret) {
+    sendResponse(res.context.response, res.context.from,
+                 "Assigned to: " + ret);
+  } else {
+    sendResponse(res.context.response, res.context.from,
+                 "You're not assigned to any tasks.")
+  }
+}));
+
 parser.respond(/^\s*(\d{4})\s*$/, validating(function(res) {
-  var taskId = res.match[1]; // last 4 digits of task ID
-  // TODO
+  var taskId = res.match[1]; // last 4 digits of task code
+  var ret = Meteor.call('startTaskP', res.context.from, taskId);
+  if (ret === null) {
+    sendResponse(res.context.response, res.context.from,
+                 "You're already doing another task.");
+  } else if (ret === false) {
+    sendResponse(res.context.response, res.context.from,
+                 "Task is full.")
+  } else {
+    sendResponse(res.context.response, res.context.from,
+                 "Assigned to " + taskId + ": " + ret);
+  }
 }));
 
 parser.respond(/^\s*switch\s*(\d{4})\s*$/i, validating(function(res) {
-  var taskId = res.match[1]; // last 4 digits of task ID
-  // TODO
+  var taskId = res.match[1]; // last 4 digits of task code
+  Meteor.call('stopTaskP', res.context.from);
+  var ret = Meteor.call('startTask', taskId);
+  if (ret === null) {
+    // this shouldn't happen...
+    sendResponse(res.context.response, res.context.from,
+                 "Internal error... try again?");
+  } else if (ret === false) {
+    sendResponse(res.context.response, res.context.from,
+                 "Task is full.")
+  } else {
+    sendResponse(res.context.response, res.context.from,
+                 "Assigned to " + taskId + ": " + ret);
+  }
 }));
 
 parser.respond(/^\s*done\s*$/i, validating(function(res) {
-  // TODO
+  if (Meteor.call('stopTaskP', res.context.from)) {
+    sendResponse(res.context.response, res.context.from,
+                 "Ok, noted.");
+  } else {
+    sendResponse(res.context.response, res.context.from,
+                 "You're not assigned to any tasks.");
+  }
 }));
 
 parser.respond(/^\s*close\s*task\s*(\d{4})\s*$/i, validating(function(res) {
-  var taskId = res.match[1]; // last 4 digits of task ID
+  var taskId = res.match[1]; // last 4 digits of task code
   // TODO
 }));
 
