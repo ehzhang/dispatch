@@ -11,8 +11,6 @@ handleHackbotPost = function() {
   // TODO verify that this message is actually coming from hackbot before doing
   // any processing!
   var body = this.request.body; // already parsed object
-  console.log('got post!');
-  console.log(body);
   if (body.call === 'create') {
     var args = body.arguments;
     var min = args.min;
@@ -37,7 +35,13 @@ handleHackbotPost = function() {
     this.response.writeHead(200, { 'Content-Type': 'application/json' });
     this.response.end(JSON.stringify(response, null, ' '));
   } else if (body.call === 'close') {
-    // TODO handle
-    // TODO respond
+    var args = body.arguments;
+    var code = args.code;
+    var response = {};
+
+    var res = Meteor.call('closeTask', null, code, true);
+    response.success = (res !== false);
+    this.response.writeHead(200, { 'Content-Type': 'application/json' });
+    this.response.end(JSON.stringify(response, null, ' '));
   }
 };
