@@ -12,6 +12,15 @@ var api = [
     endpoint: 'hackbot',
     post: handleHackbotPost,
     get: handleHackbotGet
+  },
+  {
+    endpoint: 'pebble/:id',
+    get: handlePebbleGet
+  },
+  {
+    endpoint: 'pebblestatus/:id',
+    get: handlePebbleStatusGet,
+    post: handlePebblePost,
   }
 ];
 
