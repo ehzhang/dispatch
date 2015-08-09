@@ -1,4 +1,4 @@
-var statusUrl = 'http://dispatch32.ngrok.com/api/pebblestatus/IDENTIFIER';
+var statusUrl = 'http://dispatch.hackmit.org/api/pebblestatus/IDENTIFIER';
 
 var cache = null;
 var index = null;
