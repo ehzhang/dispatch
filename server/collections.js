@@ -43,6 +43,11 @@ Schemas.Task = new SimpleSchema({
     label: 'Works on Task'
   },
 
+  notified: {
+    type: [String],
+    label: 'Notified about Task'
+  },
+
   status: {
     type: String,
     allowedValues: ['open', 'closed'],
