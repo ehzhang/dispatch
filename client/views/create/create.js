@@ -20,7 +20,7 @@ Template.create.onCreated(function(){
     },
     {
       name: 'task',
-      confirmText: 'Make it so!'
+      confirmText: 'Dispatch it!'
     }
   ];
   this.step = new ReactiveVar(0);
@@ -100,6 +100,54 @@ Template.create.helpers({
         ]
       }
     });
+  },
+  'taskReadyClass': function(){
+    var t = Template.instance();
+
+    // Not the last step!
+    if (t.step.get() < t.taskStates.length - 1){
+      return;
+    }
+
+    // Check to see if the task is valid.
+    var selectedUsers = t.taskSelectedUsers.get();
+    selectedUsers = Object
+      .keys(selectedUsers)
+      .filter(function(key){
+        return selectedUsers[key];
+      })
+      .map(function(key){
+        return Meteor.users.findOne({_id: key});
+      });
+
+    var selectedChannels = t.taskSelectedChannels.get();
+    selectedChannels = Object
+      .keys(selectedChannels)
+      .filter(function(key){
+        return selectedChannels[key];
+      })
+      .map(function(key){
+        return Channels.findOne({_id: key});
+      });
+
+    var description = t.taskDescription.get();
+
+    if (description.length === 0){
+      return 'disabled';
+    }
+
+    if (t.selected.get() === 'anyone'){
+      return;
+    }
+
+    if (t.selected.get() === 'people'){
+      return selectedUsers.length > 0 ? '' : 'disabled';
+    }
+
+    if (t.selected.get() === 'channel'){
+      return selectedChannels.length > 0 ? '' : 'disabled';
+    }
+
   }
 });
 
@@ -174,6 +222,10 @@ Template.create.events({
     var selected = t.taskSelectedUsers.get();
     selected[userId] = !selected[userId];
     t.taskSelectedUsers.set(selected);
+  },
+
+  'keyup, blur #task-description': function(e, t){
+    t.taskDescription.set(e.target.value);
   }
 
 });
