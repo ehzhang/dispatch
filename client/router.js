@@ -11,7 +11,7 @@ Router.route('/', function(){
   this.render('home');
 });
 
-Router.route('/profile', function(){
-  this.layout('bannerLayout');
-  this.render('profile');
+Router.route('/create', function(){
+  this.layout('sidebarLayout');
+  this.render('create');
 });

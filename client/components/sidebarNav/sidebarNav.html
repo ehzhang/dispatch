@@ -1,17 +1,20 @@
 <template name="sidebarNav">
   <div id="sidebar" class="visible ui left vertical inverted sidebar labeled icon menu">
-    <a class="item {{isActivePath '/'}}">
+    <a href="/"
+      class="item {{isActivePath '/'}}">
       <i class="send icon"></i>
       Dispatch
     </a>
-    <a class="item">
+    <a
+      href="/create"
+      class="item {{isActivePath '/create'}}">
       <i class="plus layout icon"></i>
       New Task
     </a>
-    <a class="item">
+<!--     <a class="item">
       <i class="settings icon"></i>
       Settings
-    </a>
+    </a> -->
     <a class="item" id="logout">
       <i class="sign out icon"></i>
       Logout
