@@ -24,7 +24,7 @@ SyncedCron.add({
       var channels = task.channels;
       var candidates;
       if (users.length > 0) {
-        candidates = Meteor.users.find({_id: {$in: users}}).fetch();
+        candidates = Meteor.users.find({_id: {$in: users}, online: true}).fetch();
       } else {
         candidates = Meteor.users.find({'profile.channels': {$in: channels}}).fetch();
       }
