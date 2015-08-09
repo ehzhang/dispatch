@@ -108,7 +108,6 @@ var validating = function(wrapped) {
   var validator = function(res) {
     var user = res.context.from;
     if (!Meteor.call('isApproved', user)) {
-      // TODO check if user is not registered or not approved
       var msg = "Sorry, you are not registered or not approved by your team administrator.";
       sendResponse(res.context.response, res.context.from, msg);
     }
