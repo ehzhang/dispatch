@@ -1,5 +1,20 @@
 SyncedCron.start();
 
+// TODO duplicated code, fix later
+var twilio = Meteor.npmRequire('twilio');
+var settings = JSON.parse(Assets.getText('config.json'));
+var twilioClient = twilio(settings.twilio.accountSid, settings.twilio.authToken);
+
+var sendMessage = function(to, message) {
+  twilioClient.sendMessage({
+    to: to,
+    from: settings.twilio.number,
+    body: message,
+  }, function(err, responseData) {
+    // TODO figure out how to handle this
+  });
+};
+
 // returns true if task a is higher priority than task b
 // for the user
 var higherPriority = function(user) {
@@ -34,8 +49,8 @@ SyncedCron.add({
         var current = Tasks.findOne({status: 'open', workers: candidate._id});
         if (higherPriority(candidate)(task, current)) {
           // notify the candidate
-          // TODO actually notify instead of logging to console
           console.log('NOTIFYING ' + candidate._id + ' about ' + task.code);
+          sendMessage(candidate.profile.phone, "" + task.description + " (" + task.code + ")");
           Tasks.update({_id: task._id}, {$push: {notified: candidate._id}});
         }
       }

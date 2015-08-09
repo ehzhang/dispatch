@@ -32,16 +32,6 @@ var ackResponse = function(response) {
   response.end('');
 };
 
-var sendMessage = function(to, message) {
-  twilioClient.sendMessage({
-    to: to,
-    from: settings.twilio.number,
-    body: message,
-  }, function(err, responseData) {
-    // TODO figure out how to handle this
-  });
-};
-
 /*
  * Parser
  */
