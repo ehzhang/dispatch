@@ -196,11 +196,26 @@ parser.respond(/^\s*done\s*$/i, validating(function(res) {
 
 parser.respond(/^\s*close\s*task\s*(\d{4})\s*$/i, validating(function(res) {
   var taskId = res.match[1]; // last 4 digits of task code
-  // TODO
+  var ret = Meteor.call('closeTaskP', res.context.from, taskId);
+  if (ret) {
+    sendResponse(res.context.response, res.context.from,
+                 "Closed: " + ret);
+  } else {
+    sendResponse(res.context.response, res.context.from,
+                 "Couldn't close " + taskId + ", either nonexistent or closed.");
+  }
 }));
 
 parser.respond(/^\s*close\s*task\s*$/i, validating(function(res) {
-  // TODO
+  var taskId = res.match[1]; // last 4 digits of task code
+  var ret = Meteor.call('closeTaskP', res.context.from);
+  if (ret !== null && ret !== false) {
+    sendResponse(res.context.response, res.context.from,
+                 "Closed: " + ret);
+  } else {
+    sendResponse(res.context.response, res.context.from,
+                 "No current task or already closed.");
+  }
 }));
 
 parser.fallback(function(res) {
