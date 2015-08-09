@@ -107,7 +107,12 @@ Schemas.Channel = new SimpleSchema({
   name: {
     type: String,
     label: "Channel Name"
-  }
+  },
+
+  color: {
+    type: String,
+    label: "Channel Color"
+  },
 });
 
 Channels.attachSchema(Schemas.Channel);
