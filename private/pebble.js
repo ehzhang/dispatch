@@ -42,6 +42,21 @@ simply.on('singleClick', function(e) {
     }
     redraw();
   } else if (e.button === 'select') {
+    fetchData();
+  }
+});
+
+function fetchData() {
+  ajax({url: statusUrl}, function(data) {
+    var body = JSON.parse(data);
+    cache = body;
+    index = 0;
+    redraw();
+  });
+}
+
+simply.on('longClick', function(e) {
+  if (e.button === 'select') {
     if (cache === null) return;
     if (cache.tasks) {
       var item = cache.tasks[index];
@@ -57,21 +72,6 @@ simply.on('singleClick', function(e) {
              fetchData();
            });
     }
-  }
-});
-
-function fetchData() {
-  ajax({url: statusUrl}, function(data) {
-    var body = JSON.parse(data);
-    cache = body;
-    index = 0;
-    redraw();
-  });
-}
-
-simply.on('longClick', function(e) {
-  if (e.button === 'select') {
-    fetchData();
   } else if (e.button === 'up') {
     if (cache && cache.current) {
       ajax({method: 'post',
