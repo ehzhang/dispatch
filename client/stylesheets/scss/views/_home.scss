@@ -1,2 +1,12 @@
 #home {
+  padding-top: 12px;
+
+  #task-feed {
+    .task-feed-task{
+      margin-bottom: 16px;
+      .bottom.segment{
+        text-align: right;
+      }
+    }
+  }
 }

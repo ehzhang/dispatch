@@ -180,7 +180,78 @@ Template.create.events({
 
     var nextStep = t.step.get() + 1;
 
-    if (nextStep >= t.taskStates.length){
+    // Last step!
+    if (nextStep === t.taskStates.length){
+
+      var allChannelId = Channels.findOne({name: 'all'})._id;
+
+      // Check to see if the task is valid.
+      var selectedUsers = t.taskSelectedUsers.get();
+      selectedUsers = Object
+        .keys(selectedUsers)
+        .filter(function(key){
+          return selectedUsers[key];
+        });
+
+      var selectedChannels = t.taskSelectedChannels.get();
+      selectedChannels = Object
+        .keys(selectedChannels)
+        .filter(function(key){
+          return selectedChannels[key];
+        });
+
+      var description = t.taskDescription.get();
+      var numPeople = t.taskPeople.get();
+
+      var createdTaskAlert = function(){
+        sweetAlert({
+          title: "Awesome!",
+          text: "Your task has been dispatched.",
+          type: "success",
+          showCancelButton: false,
+          confirmButtonText: "OK",
+          closeOnConfirm: false
+        }, function(){
+          location.href = '/'; // rediect to home
+        });
+      };
+
+      if (t.selected.get() === 'anyone'){
+        Meteor.call('createTask',
+          Meteor.userId(),
+          [],
+          [allChannelId],
+          description,
+          numPeople,
+          numPeople);
+        createdTaskAlert();
+        return;
+      }
+
+      if (t.selected.get() === 'people'){
+        Meteor.call('createTask',
+          Meteor.userId(),
+          selectedUsers,
+          [],
+          description,
+          numPeople,
+          numPeople);
+        createdTaskAlert();
+        return;
+      }
+
+      if (t.selected.get() === 'channel'){
+        Meteor.call('createTask',
+          Meteor.userId(),
+          [],
+          selectedChannels,
+          description,
+          numPeople,
+          numPeople);
+        createdTaskAlert();
+        return;
+      }
+
       return;
     }
 

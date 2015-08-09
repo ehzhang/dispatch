@@ -1,5 +1,63 @@
 <template name="taskFeed">
-  <div class="ui segment">
-    TASK FEED GOES HERE
+  <div id="task-feed">
+    {{#each openTasks}}
+      {{> openTask}}
+    {{/each}}
   </div>
+</template>
+
+<template name="openTask">
+  <div class="task-feed-task">
+    <div class="ui top attached segment">
+      <div class="ui header">
+        {{description}}
+      </div>
+      <p>
+        <strong>Created by:</strong> {{taskCreator}}
+      </p>
+      <div>
+        {{#if taskChannels}}
+          {{#each taskChannels}}
+            <div
+              style="color: white; background-color: {{color}}"
+              class="ui label">
+              #{{name}}
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="ui middle attached segment">
+      {{#if taskWorkers}}
+        {{#each taskWorkers}}
+          {{> taskFeedFacebookUserAvatar}}
+        {{/each}}
+      {{else}}
+        <strong>Nobody on this task yet </strong> 😞
+      {{/if}}
+
+    </div>
+    <div class="ui bottom attached segment">
+      {{#if isOnTask}}
+        <div class="ui unjoin red button">
+          Leave Task
+        </div>
+      {{else}}
+        {{#if notAlreadyTasked}}
+          <div class="ui join basic green button">
+            Join Task
+          </div>
+        {{/if}}
+      {{/if}}
+      <div class="ui join basic red button">
+        Close Task
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="taskFeedFacebookUserAvatar">
+  <img
+    class="ui avatar image"
+    src="{{facebookImageUrl}}">
 </template>
