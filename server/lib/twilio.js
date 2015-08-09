@@ -1,4 +1,6 @@
 var twilio = Meteor.npmRequire('twilio');
+var settings = JSON.parse(Assets.getText('config.json')).settings;
+var twilioClient = twilio(settings.twilio.accountSid, settings.twilio.authToken);
 var phone = Meteor.npmRequire('node-phonenumber');
 
 /*
@@ -23,6 +25,16 @@ var sendResponse = function(response, to, message) {
   // 502 (even if the server returns a 200)
   response.writeHead(200, { 'Content-Type': 'text/xml' });
   response.end(resp.toString());
+};
+
+var sendMessage = function(to, message) {
+  twilioClient.sendMessage({
+    to: to,
+    from: settings.twilio.number,
+    body: message,
+  }, function(err, responseData) {
+    // TODO figure out how to handle this
+  });
 };
 
 /*
