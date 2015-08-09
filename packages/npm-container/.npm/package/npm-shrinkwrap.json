@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "node-phonenumber": {
+      "version": "0.2.2",
+      "dependencies": {
+        "closure": {
+          "version": "1.0.3"
+        }
+      }
+    },
     "twilio": {
       "version": "2.2.1",
       "dependencies": {
