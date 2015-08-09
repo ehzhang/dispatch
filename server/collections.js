@@ -50,6 +50,16 @@ Schemas.Task = new SimpleSchema({
     label: 'Maximum number of workers',
   },
 
+  users: {
+    type: [String],
+    label: 'Users who can work on this task',
+  },
+
+  channels: {
+    type: [String],
+    label: 'Channels that have users who can work on this task',
+  },
+
   workers: {
     type: [String],
     label: 'Works on Task'
