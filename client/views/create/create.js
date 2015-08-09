@@ -2,6 +2,7 @@
 Template.create.onCreated(function(){
   // Needs to know all users
   this.subscribe('allUsers');
+  this.subscribe('');
 
   this.taskPeople = new ReactiveVar(1);
   this.taskSelectedChannels = new ReactiveVar({});
@@ -56,12 +57,7 @@ Template.create.helpers({
     return Template.instance().filterChannel.get() === channelId;
   },
   'allChannels': function(){
-    return [
-      {color: '#3498db', name: 'dev', _id: '1'},
-      {color: '#9b59b6', name: 'support', _id: '3'},
-      {color: '#e67e22', name: 'logs', _id: '5'},
-      {color: '#2c3e50', name: 'volunteers', _id: '9'},
-    ];
+    return Channels.find({}, {sort: {name: 1}});
   },
   'selectedChannels': function(){
     var selectedChannels = Template.instance().taskSelectedChannels;
@@ -81,11 +77,18 @@ Template.create.helpers({
   },
   'channelUsers': function(){
     var channel = this;
-    // var users = Users.find({$in: [channel._id]});
-    var users = Meteor.users.find({}).fetch();
+    var users = Meteor.users.find({'profile.channels':{$in: [channel._id]}}).fetch();
     return users;
+  },
+  'filteredUsers': function(){
+    return Meteor.users.find({
+      'profile.channels': {
+        $in: [
+          Template.instance().filterChannel.get()
+        ]
+      }
+    });
   }
-
 });
 
 Template.create.events({

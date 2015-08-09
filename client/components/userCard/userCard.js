@@ -16,12 +16,12 @@ Template.userCard.helpers({
     return  true;
   },
   'channels': function(){
-    // TODO WHEN ADD ACTUAL CHANNELS
-    return [
-      {color: '#3498db', name: 'dev', _id: '1'},
-      {color: '#9b59b6', name: 'support', _id: '3'},
-      {color: '#e67e22', name: 'logs', _id: '5'},
-      {color: '#2c3e50', name: 'volunteers', _id: '9'},
-    ];
+    if (this.profile.channels){
+      return this.profile.channels.map(function(channelId){
+        return Channels.findOne({_id: channelId});
+      });
+    }
+
+    return [];
   }
 });

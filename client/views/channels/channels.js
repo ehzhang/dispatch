@@ -20,7 +20,7 @@ Template.channels.onCreated(function(){
 
 Template.channels.helpers({
   'channels': function(){
-    return Channels.find({}, {$sort: {name: 1}});
+    return Channels.find({}, {sort: {name: 1}});
   },
   'channelUsers': function(){
     var channelId = this._id;
@@ -37,11 +37,16 @@ Template.channels.helpers({
 });
 
 Template.channels.events({
+  'keyup #name': function(e, t){
+    e.target.value = e.target.value.replace(/\s/g, "");
+  },
   'click #submit': function(e, t){
     e.preventDefault();
     var name = $('#name').val();
     var color = t.colors[Math.floor(Math.random() * t.colors.length)];
-    Meteor.call('createChannel', Meteor.userId(), name, color);
+    Meteor.call('createChannel', Meteor.userId(), name, color, function(){
+
+    });
   },
   'click .subscribe': function(e, t){
     var channelId = this._id;
