@@ -112,16 +112,44 @@ var validating = function(wrapped) {
   return validator;
 };
 
-parser.respond(/^(\d{4})\b/, validating(function(res) {
-  console.log('bare number: ' + res.match[1]);
+parser.respond(/^\s*ok\s*$/i, function(res) {
+  // TODO
+  // note that this is not wrapped in validating
+});
+
+parser.respond(/^\s*start\s*$/i, validating(function(res) {
+  // TODO
 }));
 
-parser.respond(/switch\s+(\d{4})\b/, validating(function(res) {
-  console.log('switch with num: ' + res.match[1]);
-  sendResponse(res.context.response, res.context.from, 'hello ' + res.match[1]);
+parser.respond(/^\s*stop\s*$/i, validating(function(res) {
+  // TODO
+}));
+
+parser.respond(/^\s*(\d{4})\s*$/, validating(function(res) {
+  var taskId = res.match[1]; // last 4 digits of task ID
+  // TODO
+}));
+
+parser.respond(/^\s*switch\s*(\d{4})\s*$/i, validating(function(res) {
+  var taskId = res.match[1]; // last 4 digits of task ID
+  // TODO
+}));
+
+parser.respond(/^\s*done\s*$/i, validating(function(res) {
+  // TODO
+}));
+
+parser.respond(/^\s*close\s*task\s*(\d{4})\s*$/i, validating(function(res) {
+  var taskId = res.match[1]; // last 4 digits of task ID
+  // TODO
+}));
+
+parser.respond(/^\s*close\s*task\s*$/i, validating(function(res) {
+  // TODO
 }));
 
 parser.fallback(function(res) {
+  // note: not validating
   var msg = "Sorry, I couldn't understand that command.";
   sendResponse(res.context.response, res.context.from, msg);
 });
