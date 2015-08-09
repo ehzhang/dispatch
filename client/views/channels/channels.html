@@ -1,5 +1,52 @@
 <template name="channels">
   <div class="ui segment">
-    Manage Channels
+    <div class="ui header">
+      Create a Channel
+    </div>
+    <div class="ui form">
+
+      <div class="field">
+        <input id="name" type="text">
+      </div>
+
+      <div class="field">
+        <button id="submit" class="ui teal button">
+          Create Channel
+        </button>
+      </div>
+
+    </div>
   </div>
+
+  <div class="ui header">
+    Channels
+  </div>
+  {{#each channels}}
+    <div
+      class="ui top attached segment">
+      <div
+        style="color: #fff; background-color: {{color}}"
+        class="ui large label">
+        #{{name}}
+      </div>
+      {{#if isSubscribed}}
+        <div class="ui green small button subscribe">
+          Subscribed
+        </div>
+      {{else}}
+        <div class="ui basic green small button subscribe">
+          Subscribe
+        </div>
+      {{/if}}
+    </div>
+    <div class="ui bottom attached segment">
+      <div class="ui stackable grid">
+        {{#each channelUsers}}
+          <div class="four wide column">
+            {{> userCard}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
 </template>

@@ -1,1 +1,4 @@
-queries = {};
+Queries = {
+  allChannels: function(){
+  }
+};
