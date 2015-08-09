@@ -1,41 +1,45 @@
 <template name="beggar">
   <div id="beggar">
-    {{#if needsPhone}}
-      <div class="ui segment">
-        <div class="ui warning message">
-          <i class="mobile icon"></i>
-          You still haven't filled out your phone number!
-        </div>
-        <div class="ui labeled action fluid input">
-          <div class="ui label">
-            +1
+
+    {{#if unverified}}
+
+      {{#if needsPhone}}
+
+        <div class="ui segment">
+          <div class="ui warning message">
+            <i class="mobile icon"></i>
+            You still haven't filled out your phone number!
           </div>
-          <input class="phone-number" type="tel" placeholder="(555)-123-4567">
-          <button class="ui teal submit button">Submit</button>
+          <div class="ui labeled action fluid input">
+            <div class="ui label">
+              +1
+            </div>
+            <input class="phone-number" type="tel" placeholder="(555)-123-4567">
+            <button class="ui teal submit button">Submit</button>
+          </div>
         </div>
+        <br>
+
+        {{else}}
+
+        <div class="ui segment">
+          <div class="ui warning message">
+            <i class="mobile icon"></i>
+            You're still not verified {{currentUser.profile.phone}})
+          </div>
+          <div class="ui teal resend verification button">
+            Resend Verification Text
+          </div>
+        </div>
+        <br>
+
+      {{/if}}
+    {{else}}
+      <div class="ui positive message">
+        <i class="mobile icon"></i>
+        Your phone number is verified as {{currentUser.profile.phone}}
       </div>
       <br>
-      {{else}}
-
-        {{#if unverified}}
-          <div class="ui segment">
-            <div class="ui warning message">
-              <i class="mobile icon"></i>
-              You're still not verified {{currentUser.profile.phone}})
-            </div>
-            <div class="ui teal resend verification button">
-              Resend Verification Text
-            </div>
-          </div>
-          <br>
-        {{else}}
-          <div class="ui positive message">
-            <i class="mobile icon"></i>
-            Your phone number is verified as {{currentUser.profile.phone}}
-          </div>
-          <br>
-        {{/if}}
-
     {{/if}}
 
   </div>

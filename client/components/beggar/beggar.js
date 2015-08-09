@@ -9,7 +9,7 @@ Template.beggar.helpers({
     return Meteor.user() &&
       Meteor.user().profile.phone &&
       Meteor.user().roles &&
-      Meteor.user().roles.verified;
+      !Meteor.user().roles.verified;
   },
 });
 
