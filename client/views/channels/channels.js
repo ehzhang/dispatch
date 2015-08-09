@@ -38,7 +38,8 @@ Template.channels.helpers({
     return false;
   },
   'myChannels': function(){
-    return Meteor.user().profile.channels.map(function(id){
+    var channels = Meteor.user().profile.channels ? Meteor.user().profile.channels : [];
+    return channels.map(function(id){
       return Channels.findOne({_id: id});
     });
   }

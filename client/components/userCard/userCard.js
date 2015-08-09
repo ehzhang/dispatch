@@ -9,9 +9,9 @@ Template.userCard.helpers({
     }
   },
   'statusClass': function(){
-    var userId = Meteor.userId();
+    var userId = this._id;
 
-    if (!Meteor.user().profile.online){
+    if (this.profile.online){
       return 'red'; // Unavailable
     }
 
