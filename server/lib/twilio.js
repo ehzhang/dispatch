@@ -132,11 +132,13 @@ parser.respond(/^\s*ok\s*$/i, function(res) {
 });
 
 parser.respond(/^\s*start\s*$/i, validating(function(res) {
-  // TODO
+  Meteor.call('setStatusP', res.context.from, true);
+  ackResponse(res.context.response);
 }));
 
 parser.respond(/^\s*stop\s*$/i, validating(function(res) {
-  // TODO
+  Meteor.call('setStatusP', res.context.from, false);
+  ackResponse(res.context.response);
 }));
 
 parser.respond(/^\s*(\d{4})\s*$/, validating(function(res) {

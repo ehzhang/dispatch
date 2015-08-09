@@ -102,6 +102,7 @@ Channels.attachSchema(Schemas.Channel);
  *      name: STRING,
  *      phone: STRING,
  *      channels: [String]
+ *      online: Boolean
  *    },
  *    roles: {
  *      admin: Boolean,
