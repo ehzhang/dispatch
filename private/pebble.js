@@ -23,6 +23,7 @@ function redraw() {
 }
 
 redraw();
+fetchData();
 
 simply.on('singleClick', function(e) {
   if (e.button === 'up') {
@@ -73,7 +74,15 @@ simply.on('longClick', function(e) {
            });
     }
   } else if (e.button === 'up' || e.button === 'down') {
-    if (cache && cache.current) {
+    if (cache && cache.tasks) {
+      var item = cache.tasks[index];
+      if (item) {
+        ajax({method: 'post',
+             url: statusUrl, type: 'json', data: {call: 'close', code: item.code}}, function(data) {
+               fetchData();
+             });
+      }
+    } else if (cache && cache.current) {
       ajax({method: 'post',
            url: statusUrl, type: 'json', data: {call: 'close'}}, function(data) {
              fetchData();

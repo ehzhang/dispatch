@@ -43,7 +43,8 @@ handlePebblePost = function() {
     this.response.end(JSON.stringify({status: 'ok'}));
   } else if (body.call === 'close') {
     var id = this.params.id;
-    var res = Meteor.call('closeTask', id);
+    var code = body.code;
+    var res = Meteor.call('closeTask', id, code);
     this.response.writeHead(200, { 'Content-Type': 'application/javascript' });
     this.response.end(JSON.stringify({status: 'ok'}));
   }
