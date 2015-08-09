@@ -35,8 +35,12 @@ Template.channels.helpers({
     if (Meteor.user().profile.channels){
       return Meteor.user().profile.channels.indexOf(channelId) > -1;
     }
-
     return false;
+  },
+  'myChannels': function(){
+    return Meteor.user().profile.channels.map(function(id){
+      return Channels.findOne({_id: id});
+    });
   }
 });
 

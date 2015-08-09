@@ -1,10 +1,22 @@
 <template name="login">
   <div id="login" class="ui segment">
+
+    <div class="logo">
+      <i class="huge send icon"></i>
+    </div>
+
+    <div class="header">
+      {{constant 'APP_NAME'}}
+    </div>
+
+    <div class="ui divider"></div>
+
     {{#if error}}
       <div class="ui small error message">
         {{error}}
       </div>
     {{/if}}
+
     <div class="ui login-password form">
 
       <div class="field">

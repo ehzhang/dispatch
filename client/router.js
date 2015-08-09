@@ -1,9 +1,13 @@
 Router.onBeforeAction(function() {
+
   if (!Meteor.userId()) {
     this.render('splash');
-  } else {
+  }
+
+  else {
     this.next();
   }
+
 });
 
 Router.route('/', function(){

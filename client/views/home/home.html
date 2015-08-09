@@ -1,17 +1,20 @@
 <template name="home">
   <section id="home">
 
-    <h1 class="ui header">
-      Most Recent Tasks
-    </h1>
-
-    <div class="ui divider"></div>
-
     <div class="ui stackable grid">
       <div class="ten wide column">
+
+        <h1 class="ui main header">
+          Most Recent Tasks
+        </h1>
+
+        <div class="ui divider"></div>
+
+        {{> beggar}}
         {{> taskFeed }}
       </div>
       <div class="six wide column">
+
         {{> eventFeed }}
       </div>
     </div>

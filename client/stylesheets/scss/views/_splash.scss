@@ -1,7 +1,7 @@
 #splash {
   height: 100%;
   width: 100%;
-  color: white;
+  color: $brand-primary;
 
   >.container {
     @include vertical-align();
@@ -9,20 +9,21 @@
       margin: 0 auto;
     }
 
+    .logo {
+      text-align: center;
+      margin-top: 18px;
+    }
+
     .header,
     .subheader {
       text-align: center;
     }
 
-    .subheader {
-      font-size: 1.5em;
-      margin-bottom: .5em;
-    }
-
     .header {
       @include logo-font();
-      font-size: 4em;
-      letter-spacing: .2em;
+      font-size: 2em;
+      letter-spacing: .1em;
+      margin: 36px;
     }
 
     #login {

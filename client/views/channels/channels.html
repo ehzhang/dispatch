@@ -6,23 +6,37 @@
     <div class="ui form">
 
       <div class="field">
-        <input id="name" type="text">
-      </div>
-
-      <div class="field">
-        <button id="submit" class="ui teal button">
-          Create Channel
-        </button>
+        <div class="ui action input">
+          <input id="name" type="text">
+          <button id="submit" class="ui teal button">
+            Create Channel
+          </button>
+        </div>
       </div>
 
     </div>
   </div>
+
+  <div class="ui segment">
+    <div class="ui header">
+      My Channels
+    </div>
+    {{#each myChannels}}
+      <div
+        style="color: #fff; background-color: {{color}}"
+        class="ui large label">
+        #{{name}}
+      </div>
+    {{/each}}
+  </div>
+
 
   <div class="ui header">
     Channels
   </div>
   {{#each channels}}
     <div
+      style="border-color: {{color}}; background: {{color}}"
       class="ui top attached segment">
       <div
         style="color: #fff; background-color: {{color}}"
@@ -34,7 +48,7 @@
           Subscribed
         </div>
       {{else}}
-        <div class="ui basic green small button subscribe">
+        <div class="ui basic small button subscribe">
           Subscribe
         </div>
       {{/if}}

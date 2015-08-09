@@ -9,13 +9,19 @@
       href="/create"
       class="item {{isActivePath '/create'}}">
       <i class="plus layout icon"></i>
-      New Task
+      New
     </a>
     <a
       href="/channels"
       class="item">
       <i class="slack icon"></i>
       Channels
+    </a>
+    <a
+      class="item">
+      <img
+        class="ui circular mini image profile" src="{{facebookImageUrl currentUser}}">
+      {{name}}
     </a>
     <a class="item" id="logout">
       <i class="sign out icon"></i>

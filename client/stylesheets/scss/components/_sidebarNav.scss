@@ -1,5 +1,9 @@
 #sidebar {
-  .sidebar {
+  &.sidebar {
     width: $sidebar-width;
+
+    img.profile {
+      margin: 8px auto;
+    }
   }
 }

@@ -11,7 +11,7 @@ Template.eventFeed.helpers({
       sort: {
         timestamp: -1
       },
-      limit: 50
+      limit: 20
     });
   },
 

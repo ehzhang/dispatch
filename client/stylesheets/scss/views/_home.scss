@@ -1,16 +1,21 @@
 #home {
   padding-top: 12px;
 
+  .grid .main.header {
+    margin-left: 18px;
+  }
+
   #task-feed {
     .task-feed-task{
       margin-bottom: 16px;
       .bottom.segment{
         text-align: right;
       }
+      .ui.label{
+        margin-top: 6px;
+        margin-bottom: 6px;
+      }
     }
-  }
-  .ui.label{
-    margin-top: 6px;
-    margin-bottom: 6px;
+
   }
 }
