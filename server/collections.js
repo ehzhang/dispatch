@@ -89,7 +89,8 @@ Events = new Mongo.Collection('events');
 Schemas.Event = new SimpleSchema({
   userId: {
     type: String,
-    label: "User Id"
+    label: "User Id",
+    optional: true,
   },
   taskId: {
     type: String,
